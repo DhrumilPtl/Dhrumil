@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>task 10</title>
+</head>
+<body>
+    <input type="date" id="date1">
+    <input type="date" id="date2">
+    <button onclick="calculateDays()">difference between two dates</button>
+    <p id="output"></p>
+    <script>
+          
+        function calculateDays()
+        { 
+            let A = document.getElementById("date1").value;
+            let B = document.getElementById("date2").value;
+            let dt1  =  new Date(A);
+            let dt2  =  new Date(B);
+            let time =Math.abs(dt2-dt1);
+            let years = Math.ceil(time/(60 *  60 * 24));
+            let months = Math.ceil(time/(60 * 60 * 24));
+            let Days = Math.ceil(time/(1000*60*60*24));  
+        }
+       
+        let difference_year_month_day = calculateDays()
+       document.getElementById("output").innerHTML=years;
+       document.getElementById("output").innerHTML=months;
+       document.getElementById("output").innerHTML=Days;
+
+    </script>
+</body>
+</html>

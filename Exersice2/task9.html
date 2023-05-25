@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>task 9</title>
+</head>
+<body>
+    <script>
+        let unix_timestamp = 8160616390   // multiplied by 1000 so that the argument is in milliseconds, not seconds.
+        let date = new Date(unix_timestamp * 1000);  // Hours
+        let hours = date.getHours();   // Minutes
+        let minutes = "0" + date.getMinutes(); // Seconds
+        let seconds = "0" + date.getSeconds(); // display time in format
+        let Time = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+
+        document.write(Time);
+    </script>
+</body>
+</html>
