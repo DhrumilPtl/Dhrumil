@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style2.css">
+    <title>Task2</title>
+</head>
+<body>
+
+    <div class="userpage"> 
+        <div class="formdata">
+       
+        <form onsubmit="event.preventDefault();" autocomplete="off">      
+         <label>FirstName</label>
+         <input type="text" class="userfirstname"  placeholder="FirstName">
+   
+         <label>LastName</label>
+         <input type="text" class="userlastname"  placeholder="LastName">
+   
+         <div style="width:100%">
+         <input type="submit"  value="Submit"  class="button">
+       </div>
+     </form>
+    </div>
+    <div class="display_table">
+               <table class="list" id="userList">
+                   <thead>
+                       <tr>         
+                         <th>FirstName</th>
+                         <th>LastName</th>
+                         <th>Action</th>
+                       </tr>
+                   </thead>
+                </table>
+   </div>
+<script>
+    // step :- 
+    let selectedtr =  null;
+    let button = document.querySelector('.button');
+    button.addEventListener("click",user);
+
+
+    // step :-2 // for call function and if condition logic
+    function user()
+    {
+      let  transfer = readData()
+            if(selectedtr== null)
+            {
+                insert(transfer)
+            }
+           else
+           {
+            update(transfer)
+            selectedtr = null;Edit
+           }
+           reset()
+    }
+
+    // step :3
+    function readData()
+    {
+       let userread = [] // object is read data
+       userread["FirstName"] = document.querySelector(".userfirstname").value;
+       userread["LastName"]  = document.querySelector(".userlastname").value;
+       return userread  // return is  call the function user
+    }
+    // step 4
+    function insert(P)   // about  insert data
+    {
+      console.log(P); 
+      let table = document.querySelector(".list");
+      let tr = table.insertRow(table.length);
+      let td1 = tr.insertCell(0);
+      let td2 = tr.insertCell(1);
+      let td3 = tr.insertCell(2);
+      let td4 = tr.insertCell(3);
+
+      td1.innerHTML = P.FirstName;
+      td2.innerHTML = P.LastName;
+      td3.innerHTML = "<button class='edt' onClick='Edit(this)'>Edit</button>"  // .this for button find 
+      td4.innerHTML = "<button class='rm' onClick='del(this)'>delete</button>";
+    }
+    //  // step 5
+      function reset()
+     {
+        document.querySelector('.userfirstname').value=" ";
+        document.querySelector('.userlastname').value=" ";
+     }
+     // step 6
+     function Edit(A)
+     {
+      console.log(A);
+         selectedtr = A.parentElement.parentElement;  // find parents  of edit button td and tr
+         document.querySelector('.userfirstname').value=selectedtr.cells[0].innerHTML; // selectedtr and find td
+         document.querySelector('.userlastname').value=selectedtr.cells[1].innerHTML;
+         
+
+     }
+     // step 7
+     function update(data)
+     {
+       console.log("userfirstname",data.FirstName)
+      selectedtr.cells[0].innerHTML = data.FirstName;
+      selectedtr.cells[1].innerHTML= data.LastName;
+     }
+     // step 8
+     function del(dl)
+     {
+       let dlt = dl.parentElement.parentElement;
+       dlt.remove();
+       console.log(dlt);
+     }
+</script>
+</body>
+</html>

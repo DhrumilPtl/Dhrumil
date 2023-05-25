@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sports group</title>
+</head>
+<body>
+    <script>
+          let data= {}      // object
+          let arr=
+        [{
+          name: 'Ravindra',
+          sports: ['chess','cricket']
+        },
+        {
+          name: 'Ravi',
+          sports: ['cricket','football']
+        },
+        {
+          name: 'Rishubh',
+          sports: ['table-tanis','football']
+        }];
+
+
+        for(let d=0;d<arr.length;d++)
+        {
+        for(let l=0;l<arr[d].sports.length;l++)
+        {
+          if(data.hasOwnProperty(arr[d].sports[l]))
+          {
+                let item=arr[d].sports[l];
+                data[item]=data[item].concat(' ',arr[d].name);
+            }
+            else
+            {
+                 let item=arr[d].sports[l]
+                 data[item]=arr[d].name
+        
+            }
+          } 
+        }
+           console.log(data);
+
+    </script>
+</body>
+</html>
