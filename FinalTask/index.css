@@ -1,0 +1,71 @@
+.first{
+    display: flex;
+    width: 1000px;
+    flex-wrap: wrap;
+    margin: auto;
+    font-family: verdana;
+    font-size: 16px;
+    border: solid 2px #f1f1f1;
+}
+.first .second{
+  width:40%;
+  padding:15px;
+}
+.first .display_table {
+  padding:15px;
+  width:52%;
+}
+.first .display_table table{
+  border:solid 1px #ccc;
+}
+.first .display_table td, 
+.first .display_table th{
+  border-left:solid 1px #ccc;
+  border-bottom:solid 1px #ccc;
+  padding:10px 5px;
+  text-align:left;
+  font-size:13px;
+}
+.first .display_table td:first-child, 
+.first .display_table th:first-child{
+  border-left:none;
+}
+
+.first .display_table tr{
+  border-bottom:solid 1px #ccc;
+}
+.first .display_table tr:last-child td{
+  border-bottom:none;
+}
+
+.second form{
+  display:flex;
+  flex-wrap:wrap;
+  background:#f1f1f1;
+  padding:15px;
+}
+.second form label{
+  width:100px;
+}
+.second form input, .second label{
+  margin:10px 0;
+  padding:5px;
+} 
+.second form input{
+  width:200px;
+  padding:7px;
+}
+.second th{
+  background:#f1f1f1; 
+  font-size:14px; 
+  font-weight:bold;
+  text-align:left;
+}
+.second .button{
+  background:#000;
+  padding:5px 10px;
+  font-size:20px;
+  margin:25px auto;
+  display:table;
+  color:#fff;
+}
