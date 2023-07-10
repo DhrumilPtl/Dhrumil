@@ -1,0 +1,12 @@
+body {
+    margin: 20px;
+  }
+  
+  .container {
+    max-width: 500px;
+  }
+  
+  .form-group {
+    margin-bottom: 10px;
+  }
+  

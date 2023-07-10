@@ -1,33 +1,47 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-const App  = () => {
+const App = () => {
+  // Get the current time and format it with AM/PM indicator
+  const getCurrentTime = () => {
+    const currentTime = new Date();
+    const hours = currentTime.getHours();
+    const minutes = currentTime.getMinutes();
+    const seconds = currentTime.getSeconds();
+    const ampm = hours >= 12 ? "PM" : "AM";
+    const formattedTime = `${hours % 12 || 12}:${addLeadingZero(
+      minutes
+    )}:${addLeadingZero(seconds)} ${ampm}`;
+    return formattedTime;
+  };
 
-    let time = new Date().toLocaleTimeString(); // for currrent time
-    let date = new Date().toLocaleDateString(); // for current date
-   // let [cday, setCday] = useState(new Date().toLocaleString("en-US", { weekday: "long" }));
+  // Add a leading zero if the number is less than 10
+  const addLeadingZero = (number) => {
+    return number < 10 ? `0${number}` : number;
+  };
 
-    const[ctime,setCtime] = useState(time);  // is functional state
-    const[cdate,setCdate] = useState(date);
+  // Initialize state for current time
+  const [currentTime, setCurrentTime] = useState(getCurrentTime());
 
- 
-    function Updatetime()
-    {
-        time = new Date().toLocaleTimeString();
-         setCtime(time);
-        date = new Date().toLocaleDateString();
-         setCdate(date);
-    }
+  // Update current time every second
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentTime(getCurrentTime());
+    }, 1000);
 
-    setInterval(Updatetime,1000)
-    
+    // Clear the interval when the component is unmounted
+    return () => clearInterval(timer);
+  }, []);
 
-    return(
-     <div>
-         <h1>{ctime}</h1>   
-         <h2>{cdate}</h2>
-     </div>
- )
+  // Get the current date with desired formatting
+  const options = { weekday: "long", month: "long", day: "numeric", year: "numeric" };
+  const currentDate = new Date().toLocaleDateString("en-US", options);
 
-}
+  return (
+    <div>
+      <h3>{currentDate}</h3>
+      <h1>{currentTime}</h1>
+    </div>
+  );
+};
 
 export default App;

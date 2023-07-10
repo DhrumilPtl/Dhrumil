@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: black;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color:  rgb(66, 160, 141);    
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: larger;
+}
+
+li a:hover:not(.active) {
+  background-color: aquamarine;
+}
+
+.active {
+  background-color: #04AA6D;
+}
+.mybtn
+{
+  margin-left: 52rem;
+  margin-top: 2rem;
+  background-color: aqua;
+  text-align: center;
+  position: absolute;
+  border-radius: 20px;
+  cursor: pointer;
+  padding: 16px 30px;
+}
+table{
+    margin-top: 8rem;
+    width: 80%;
+    
+    background: gray;
+}
+
+table.list{
+    text-align: center;
+    width: 100%;
+}
+
+td{
+    border: 1px solid rgb(70, 175, 165);
+    text-align: left;
+    padding: 8px 15px;
+}
+
+</style>
+</head>
+<body>
+
+<ul>
+  <li><a>Welcome to Admin Side </a></li>
+  <h2 class="logout" style="float:right">Log-out Admin :
+  <a href="#" onclick="logout()"> <span class="log-out" id="logout"></span>Log out</a>
+  </h2>  
+</ul>
+<!-- <div>
+  <button class="mybtn" class="primary" name="submitButton" onclick="show()">Assign Course</button>
+</div> -->
+<div>
+    <td>
+          <table class="list" id="studentlist">
+             <thead>
+                <tr>
+                    <th>StudentName</th>  
+                    <th>Actions</th>      
+                </tr>
+             </thead>
+             <tbody id="studentlist-body"></tbody> <!-- Add tbody element -->
+             
+          </table>
+    </td> 
+  </div>
+
+<script>
+   
+     function logout() 
+     {
+    window.location.href = "./signup.html";
+    sessionStorage.removeItem("C");
+    }
+
+     // Array of users
+     let users =JSON.parse(localStorage.getItem('signedUsers'));
+     console.log(users);
+     let students = users.filter( user => user.role == 'Student') || [];
+     console.log(students);
+
+  function show() {
+    // Get the table body element
+    let tableBody = document.getElementById('studentlist-body');
+    // for static  rows 
+    let A = 0;
+    let B = 1;
+
+   
+
+    // students finds
+    
+   for (let td = 0; td < students.length ; td++) {
+
+
+     let td1 = document.createElement('td');
+     let tr1 = document.createElement('tr');
+  
+    td1.id = `td${A++}`;
+    tr1.id = `tr${B++}`;
+     
+    tr1.append(td1);
+    tableBody.append(tr1);
+   }
+
+    
+    
+
+    // Retrieve student name and course from localStorage
+    let studentName = localStorage.getItem('studentName');
+    let course = localStorage.getItem('course');
+
+    // Create a new row element
+    let newRow = document.createElement('tr');
+
+    // Create cell elements for the row
+    let nameCell = document.createElement('td');
+    let courseCell = document.createElement('td');
+    let actionsCell0 = document.createElement('td');
+    let actionsCell1 = document.createElement('td');
+
+    // Set the content for the cells
+    nameCell.innerHTML = studentName;
+    courseCell.innerHTML = course;
+    actionsCell0.innerHTML = '<button>Add</button>';
+    actionsCell1.innerHTML = '<button>Delete</button>';
+
+    // Append the cells to the row
+    newRow.appendChild(nameCell);
+    newRow.appendChild(courseCell);
+    newRow.appendChild(actionsCell0);
+    newRow.appendChild(actionsCell1);
+
+    // Append the new row to the table body
+    tableBody.appendChild(newRow);
+  }
+  show();   
+
+</script>
+</body>
+</html>

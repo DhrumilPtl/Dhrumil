@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>login</title>
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+button {
+  background-color: #04AA6D;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+  width: auto;
+  padding: 10px 18px;
+  background-color: #f44336;
+}
+
+/* Center the image and position the close button */
+.imgcontainer {
+  text-align: center;
+  margin: 24px 0 12px 0;
+  position: relative;
+}
+
+img.avatar {
+  width: 40%;
+  border-radius: 50%;
+}
+
+.container {
+  padding: 16px;
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  padding-top: 60px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button (x) */
+.close {
+  position: absolute;
+  right: 25px;
+  top: 0;
+  color: #000;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: red;
+  cursor: pointer;
+}
+
+/* Add Zoom Animation */
+.animate {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+  from {-webkit-transform: scale(0)} 
+  to {-webkit-transform: scale(1)}
+}
+  
+@keyframes animatezoom {
+  from {transform: scale(0)} 
+  to {transform: scale(1)}
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 300px) {
+  span.psw {
+     display: block;
+     float: none;
+  }
+  .cancelbtn {
+     width: 100%;
+  }
+}
+</style>
+</head>
+<body>
+
+<h2> Login Form</h2>
+
+
+<button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Login</button>
+
+<div id="id01" class="modal">
+  
+  <form class="modal-content animate" action="./Admincourse.html" method="post"  onsubmit="event.preventDefault()">
+    <div class="imgcontainer">
+      <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+    </div>
+
+    <div class="container">
+      <!-- <label for="uname"><b> First name</b></label>
+      <input type="text" placeholder="Enter First Name" name="fname"  id="fname" required> -->
+
+
+       <label for="uname"><b>Email</b></label>
+      <input type="text" placeholder="Enter Email id" name="email"  id="email" required> 
+
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="psw"  id="password" required>
+
+      <!-- <label for="psw-repeat"><b>Repeat Password</b></label>
+      <input type="password" placeholder="Repeat Password" name="psw-repeat" id="rpassword" required> -->
+        
+      <button type="submit"  onclick="login()">Login</button>
+      <label><input type="radio"value="Admin" checked="checked" name="remember" id="a1">Admin</label>
+      <label><input type="radio" value="Student" name="remember" id="s1">Student</label>
+    </div>
+
+    <div class="container" style="background-color:#f1f1f1">
+      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+      <span class="psw">Forgot <a href="#">password?</a></span>
+    </div>
+  </form>
+</div>
+
+<script>
+        // for get from id // get value from user
+      function login()
+      {
+        // let fname =  document.getElementById('fname').value;
+        let inputemail = document.getElementById('email').value;
+        let Password = document.getElementById('password').value;
+        // let RepeatPassword = document.getElementById('rpassword').value;
+        let admin = document.getElementById('a1').checked;
+        let student = document.getElementById('s1').checked;
+
+        // get from localstorage  
+        // let  Fname = localStorage.getItem("signedUsers"); 
+        // let  EMAIL = localStorage.getItem("signedUsers")  
+        // let  password = localStorage.getItem("signedUsers");
+        // let  repeatPassword  = localStorage.getItem("signedUsers");
+        // let  Admin = localStorage.getItem("signedUsers"); 
+        // let  Student = localStorage.getItem("signedUsers");
+     
+        let users = JSON.parse(localStorage.getItem('signedUsers')); 
+        console.log(users)
+        let user,password;
+        for(let user of users){
+          console.log(inputemail,user.email)
+          if(inputemail == user.email){
+            password = user.password;
+            break;
+          }
+            
+        }
+
+        console.log('password',password);
+
+
+        let A = sessionStorage.setItem("C","Dhrumil");
+        console.log(A);
+
+        if(password == Password)
+        {
+          if(admin)
+         {
+           window.location.href="./Admincourse.html";
+         }else
+         {
+            window.location.href="./Student.html";   
+         }
+        }
+
+        // if (all)
+        // {
+        //   all =  JSON.parse(all);
+        // }else
+        // {
+        //   all = [];
+        // } 
+
+        // all.push('value1');
+        // all.push('value2');
+
+
+
+        
+       // console.log(JSON.parse(users));  
+        if(admin)
+        {
+          window.location.href="./Admincourse.html";
+        }else
+        {
+           window.location.href="./Student.html";   
+        }
+        }
+</script>
+</body>
+</html>
+
+
+<!-- // Retrieve the existing values from local storage
+let existingValues = localStorage.getItem('myKey');
+
+// Check if any values exist
+if (existingValues) {
+  // If values exist, parse them from a string to an array or object
+  existingValues = JSON.parse(existingValues);
+} else {
+  // If no values exist, initialize an empty array or object
+  existingValues = [];
+}
+
+// Add new values to the existing array or object
+existingValues.push('value1');
+existingValues.push('value2');
+existingValues.push('value3');
+
+// Store the updated values back into local storage
+localStorage.setItem('myKey', JSON.stringify(existingValues));
+ -->

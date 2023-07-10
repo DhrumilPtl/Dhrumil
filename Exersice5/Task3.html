@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 3</title>
+    <link rel="stylesheet" href="Task3.css" >
+</head>
+<body>
+   <h1 align="center"> Task 3</h1> 
+   <div class="flex" id="body">
+       <div>
+        <div class="one" onclick="box1()">  One <br></br> click me first </div> 
+        <div class="three" id="three" onclick="getrandomcolorbox3()">three</div>
+        </div>
+        <div>
+        <div class="two" id="two">two</div>
+        <div class="four"  id="four">four</div>
+        </div>
+   </div>
+    <script>
+        alert('hello! Its task 3');
+        let b = document.getElementById("two");
+        let c = document.getElementById("four");
+        let Box2 = ['red' , 'green' , 'yellow']
+        let Box4 = ['yellow' , 'orange' , 'pink' , 'green' , 'brown']
+        
+        // box 1
+        function box1()
+        {
+            // for  box 3
+          let a = document.getElementById("three");
+          a.innerHTML +=`<br></br><br></br> oops something wrong?`
+        }
+        
+        function getrandomcolorbox3()
+        {
+          let  letters  = '0123456789ABCDEF';
+          let color = '#';
+
+          for(let i = 0; i < 6; i++)
+          {
+            color += letters[Math.floor(Math.random() *16)]; 
+          }
+          return color;
+        }
+              //  box 2
+         function changecolor()
+        {
+          b.style.backgroundColor = getrandomcolorbox3();
+          // b.style =`background-color : ${Box2[i]}`
+          // d++  ;
+        }  
+             // Box4
+         function colorsBox4()
+        { 
+          c.style.backgroundColor = getrandomcolorbox3();
+          // c.style = `background-color : ${Box4[p]}`
+          // p++;
+        }
+        setInterval(changecolor,3000); // box 2
+        setInterval(colorsBox4,5000);   // box 4 
+       
+       
+                    //  box4 keyboard
+          let arrowkeys = document.getElementById("four");
+
+         document.onkeydown = function(event)
+         {                                                                 // funtion to change color of box4
+            let keyPressed = event.key
+            if(event.key === 'Arrowup' || event.key === 'ArrowRight')
+            {
+              if(j < 5)
+              {
+                b.style = `background- color : ${Box4[[j]]}`
+                j++;
+              }
+              else{
+                j= 0;
+                b.style = `background-color : ${Box4[j]}`
+              } }
+              else if(event.key === 'ArrowDown' || event.key === 'Arrowleft')
+              {
+                if(j<5 && j  >  0)
+                  {
+                    b.style = `background-color : ${Box4[j]}`
+                    j--;
+                  }
+                  else 
+                  {
+                    j = 0 ;
+                    b.style = `background-color : ${Box4[j]}`
+                  }
+              }
+            }
+
+    </script>
+</body>
+</html>
+ 
+<!-- function startChangingColorOnclick() {
+    
+  document.addEventListener('keydown', (event) => {   
+    if(event.key === 'ArrowUp' || event.key === 'ArrowRight')
+     { if(j < 5 )
+      {
+          box4.style =`background-color : ${colorsBox4[j]}`
+          j++ ;    
+      }
+      else {
+          j = 0 ; 
+          box4.style =`background-color : ${colorsBox4[j]}`
+      } }
+      else if(event.key === 'ArrowDown' || event.key === 'ArrowLeft')
+      {
+          if(j < 5 && j >0)
+          {
+              box4.style =`background-color : ${colorsBox4[j]}`
+              j-- ;    
+          }
+          else {
+              j = 0 ; 
+              box4.style =`background-color : ${colorsBox4[j]}`
+          }
+      }
+  });
+} -->

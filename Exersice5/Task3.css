@@ -1,0 +1,36 @@
+.flex
+{
+    display: flex;
+}
+.one
+{
+    height: 200px;
+    width: 200px;
+    background-color:aqua ;
+    margin: 10px;
+    text-align: center;
+}
+.two
+{
+    height: 200px;
+    width: 200px;
+    margin: 10px;
+    background-color:aqua ;
+    text-align: center;
+}
+.three
+{
+    height: 200px;
+    width: 200px;
+    margin: 10px;
+    background-color:aqua ;
+    text-align: center;
+}
+.four
+{
+    height: 200px;
+    width: 200px;
+    background-color:aqua ;
+    margin: 10px;
+    text-align: center;
+} 

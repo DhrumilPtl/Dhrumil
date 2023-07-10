@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .highlight {
+      background-color: yellow;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <input type="text" id="filter-input" oninput="filterNames()">
+  <ul id="name-list"></ul>
+
+  <script>
+    const names = [
+      "John Doe",
+      "Jane Smith",
+      "David Johnson",
+      "Sarah Williams",
+      "Michael Brown",
+      "Emily Davis",
+      "Robert Taylor",
+      "Olivia Wilson",
+      "James Anderson",
+      "Sophia Martinez",
+      "Daniel Clark",
+      "Ava Thomas",
+      "Matthew Lee",
+      "Isabella Rodriguez",
+      "Joseph Taylor",
+      "Charlotte Hernandez",
+      "William Johnson",
+      "Mia Martinez",
+      "Andrew Garcia",
+      "Abigail Robinson",
+      "Alexander Davis",
+      "Ella Brown",
+      "Noah Anderson",
+      "Grace Wilson",
+      "Benjamin Jones"
+    ];
+
+    const filterInput = document.getElementById("filter-input");
+    const nameList = document.getElementById("name-list");
+
+    function filterNames() {
+      const searchText = filterInput.value.toLowerCase();
+      nameList.innerHTML = "";
+
+      if (searchText.length < 2) {
+        return;
+      }
+
+      names.forEach((name) => {
+        const [firstName, lastName] = name.split(" ");
+        const fullName = `${firstName} ${lastName}`;
+        const lowerCaseFullName = fullName.toLowerCase();
+
+        if (lowerCaseFullName.includes(searchText)) {
+          const highlightStartIndex = lowerCaseFullName.indexOf(searchText);
+          const highlightEndIndex = highlightStartIndex + searchText.length;
+          const highlightedFullName =
+            fullName.substring(0, highlightStartIndex) +
+            `<span class="highlight">${fullName.substring(
+              highlightStartIndex,
+              highlightEndIndex
+            )}</span>` +
+            fullName.substring(highlightEndIndex);
+
+          const li = document.createElement("li");
+          li.innerHTML = highlightedFullName;
+          nameList.appendChild(li);
+        }
+      });
+    }
+  </script>
+</body> 
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Task2.css">
+    <title>Task 2</title>
+   <style>
+        .highlight 
+        {
+            background-color: yellow;
+        }
+   </style>
+
+</head>
+<body>
+  <input id="searchbar" onkeyup="search_cars()" type="text"
+        name="search" placeholder="Search cars.." style="background-color:rgb(87, 89, 176)">
+      
+    <!-- ordered list -->
+    <div id='list'>
+        <li class="cars">Alto800</li>
+        <li class="cars">Swift</li>
+        <li class="cars">Endevour</li>
+        <li class="cars">Ford</li>
+        <li class="cars">G-Wagon</li>
+        <li class="cars">Morries-garage</li>
+        <li class="cars">Boleno</li>
+        <li class="cars">wost-wagon</li>
+        <li class="cars">Thar</li>
+        <li class="cars">T-series</li>
+        <li class="cars">Bolero</li>
+        <li class="cars">Bolero boo</li>
+        <li class="cars">Jemmney</li>
+        <li class="cars">Audi Q4</li>
+    </div>
+    <script>
+      function search_cars() 
+  {
+    let input = document.getElementById('searchbar').value;
+    input=input.toUpperCase();
+    let x = document.getElementsByClassName('cars');
+      
+    for (i = 0; i < x.length; i++) 
+    { 
+        if (!x[i].innerHTML.toUpperCase().includes(input)) 
+        {
+            x[i].style.display="none";
+        }
+        else {
+            x[i].style.display="list-item";                 
+        }
+    }
+  }
+    </script>
+</body>
+</html>
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Task2.css">
+    <style>
+        .highlight {
+            background-color: yellow;
+        }
+    </style>
+    <title>Task 2</title>
+</head>
+<body>
+    <input id="searchbar" onkeyup="search_cars()" type="text"
+        name="search" placeholder="Search cars.." style="background-color: gray">
+
+    ordered list -->
+    <!-- <div id='list'>
+        <li class="cars">Alto800</li>
+        <li class="cars">Swift</li>
+        <li class="cars">Endevour</li>
+        <li class="cars">Ford</li>
+        <li class="cars">G-Wagon</li>
+        <li class="cars">Morries-garage</li>
+        <li class="cars">Boleno</li>
+        <li class="cars">wost-wagon</li>
+        <li class="cars">Thar</li>
+        <li class="cars">T-series</li>
+        <li class="cars">Bolero</li>
+        <li class="cars">Bolero boo</li>
+    </div>
+
+    <script>
+        function search_cars() {
+            let input = document.getElementById('searchbar').value.trim();
+            let x = document.getElementsByClassName('cars');
+
+            for (i = 0; i < x.length; i++) {
+                let carName = x[i].textContent.toUpperCase();
+                let searchQuery = input.toUpperCase();
+
+                if (searchQuery.length >= 2 && carName.includes(searchQuery)) {
+                    let regex = new RegExp(searchQuery, 'gi');
+                    x[i].innerHTML = carName.replace(regex, '<span class="highlight">$&</span>');
+                    x[i].style.display = "list-item";
+                } else {
+                    x[i].innerHTML = carName;
+                    x[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+</body>
+</html> -->

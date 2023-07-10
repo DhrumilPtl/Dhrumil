@@ -6,7 +6,12 @@ import T1c from './T1c';
 function App() {
   return (
     <div className="App">
+
+    
     <T1f/>
+___________________________________
+   
+     
     <T1c/>
     </div>
   );
