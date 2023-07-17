@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Hidden email</title>
+</head>
+<body>
+    <form>
+        <p>
+            Email: <input type="text" placeholder="abc" id="t1"/><br/>
+            <input type="button" value="Protect" onclick="test_str()"/><br/>
+            Output: <input type="text" id="t2" readonly/>
+        </p>
+    </form>
+    <script>
+         function test_str()
+         {
+               let A = document.getElementById("t1").value ;
+               let B = A.indexOf('@');
+               let C = A.replace(A.slice(5, B), "*".repeat(5));
+               console.log("t2").value = C;
+         }
+
+    </script>
+</body>
+</html>

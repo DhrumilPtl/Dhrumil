@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>task 14</title>
+</head>
+<body>
+    <script>
+         let users = [
+            {
+                Name: 'dhrumil',
+                id: 1,
+                age: 20
+
+            },
+            {
+                Name: 'yash',
+                id: 2,
+                age: 21
+
+            },
+            {
+                Name: 'meet',
+                id: 3,
+                age: 22
+            },
+            {
+                Name: 'karan',
+                id: 4,
+                age: 27
+            },
+            {
+                Name: 'jugnesh',
+                id: 5,
+                age: 24
+            },
+            {
+                Name: 'dhamo',
+                id: 6,
+                age: 20
+            },
+            {
+                Name: 'Anand',
+                id: 7,
+                age: 21
+            },
+            {
+                Name: 'Somya',
+                id: 8,
+                age: 24
+            },
+            {
+                Name: 'Vedant',
+                id: 9,
+                age: 19
+            },
+            {
+                Name: 'Rudresh',
+                id: 10,
+                age: 19
+            }
+        ]
+
+        users.sort((a, b) => Number(a.age) - Number(b.age));
+        console.log("ascending", users);
+        users.sort((a, b) => Number(b.age) - String(a.age));
+        console.log("descending", users);
+
+    </script>
+</body>
+</html>

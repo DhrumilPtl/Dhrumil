@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Row and column</title>
+</head>
+<body>
+    <table id="table" border="2">
+         <tr>
+             <th>FirstName</th>
+             <th>SecondName</th>
+             <th>Age</th>
+         </tr>
+         <tr>
+             <td>F1</td>
+             <td>S1</td>
+             <td>10</td>
+         </tr>
+         <tr>   
+             <td>F2</td>
+             <td>S2</td>
+             <td>15</td>
+         </tr>
+         <tr>   
+            <td>F3</td>
+            <td>S3</td>
+            <td>20</td>
+        </tr>
+        <tr>   
+            <td>F4</td>
+            <td>s4</td>
+            <td>25</td>
+        </tr>
+        <tr>   
+            <td>F5</td>
+            <td>S5</td>
+            <td>18</td>
+        </tr>
+    </table>
+    <script>
+            let table = document.getElementById("table"),R,C;
+  
+            // for table rows length
+            for(let D =1;D<table.rows.length; D++)
+            {
+               // for cells
+               for (let P =0; P < table.rows[D].cells.length; P++)
+               {
+                   table.rows[D].cells[P].onclick = function()
+                   {
+                     R = this.parentElement.rowIndex;
+                     C = this.cellIndex;
+                     console.log("Row : "+R+",cell :" +C);
+                   };
+               }
+            }
+
+    </script>
+</body>
+</html>

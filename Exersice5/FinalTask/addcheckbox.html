@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css"> 
+    <title>crud with check-box</title>
+</head>
+<body></body>
+    <div class="first">
+          <div class="second">
+             <form>
+                 <label>FirstName :-</label>
+                 <input class="f1" placeholder="Enter First Name" name="fn">
+
+                 <label>SecondName :-</label>
+                 <input class="f2" placeholder="Enter Second Name" name="sn">
+
+                 <div style="width: 100px;">
+                 <input type="button" class="button" value="submit" name="add">
+                 </div>
+             </form>
+                 <input onclick="check_box(event)" type="checkbox" class="cb" id="studentcheckbox" >
+                 <label for="studentcheckbox" onclick="">Select All</label>
+                 <label class="select_checkbox"></label>
+            <div style="width: 100px;">
+                 <input type="button" class="button2" value="delete" onClick="deletecheckbox()">
+             </div>
+          </div>
+          <div class="display_table">
+            <table class="list" id="userList">
+                <thead>
+                    <tr>         
+                      <th>FirstName</th>
+                      <th>LastName</th>
+                      <th>Action</th>
+                      <th>Box</th>
+                    </tr>
+                </thead>
+             </table>
+         </div>
+    </div>
+    <script>
+        let selcttr = null; // global variable
+        let button = document.querySelector(".button"); // find button
+        button.addEventListener("click", data);
+
+        // function 1
+        function data() {
+            let r = read();
+
+            if (selcttr == null) {
+                insert(r);  
+            } else {
+                update(r);
+                selcttr = null;
+            }
+            reset();
+        }
+
+        // function 2
+        function read() {
+            let objr = {}; // object for read data
+            objr["checkbox"] = document.getElementById("studentcheckbox").value;
+            objr["FirstName"] = document.querySelector(".f1").value;  // properties
+            objr["SecondName"] = document.querySelector(".f2").value;
+
+            return objr;
+        }
+
+        // function 3
+        function insert(D) {
+
+            if (D.FirstName.trim() === "" || D.SecondName.trim() === "")  // trim is use for remove extra spece  
+            {
+              alert("Enter the Firstname and Second name");
+             
+              return; // Stop execution if fields are empty
+            }
+            // for table   
+            let table = document.querySelector(".list");
+            // for table row
+            let tr = table.insertRow(table.length);
+            // for td
+            let tdr = tr.insertCell(0);
+            let tdr1 = tr.insertCell(1);
+            let tdr2 = tr.insertCell(2);
+            let tdr3 = tr.insertCell(3);
+           
+            tdr.innerHTML = D.FirstName;
+            tdr1.innerHTML = D.SecondName;
+            tdr2.innerHTML = "<button class='edt' onClick='Edit(this)'>Edit</button>  <button class='dlt' onClick='Delete(this)'>Delete</button>";  // for edit and delete
+            tdr3.innerHTML = `<input type="checkbox" class="boxall" onClick= "showcheck_box()"/>`;
+        }
+
+        // function 4 
+        function reset() {
+            document.querySelector(".f1").value = "";
+            document.querySelector(".f2").value = "";  
+        } 
+
+        // function 5
+        function Edit(Z) {
+            selcttr = Z.parentElement.parentElement; // store parent element
+            // call text field 
+            document.querySelector(".f1").value = selcttr.cells[0].innerHTML;
+            document.querySelector(".f2").value = selcttr.cells[1].innerHTML;   
+        }
+
+        function update(objr) {
+            selcttr.cells[0].innerHTML = objr.FirstName;
+            selcttr.cells[1].innerHTML = objr.SecondName;
+        }
+        
+        // function 6
+        function Delete(dl) {
+            let selecttrd = dl.parentElement.parentElement; // same as edit, just variable name change
+            selecttrd.remove();
+        }  
+
+        // function 7
+        function check_box(event)   //  for create checkboxes  and check that true false
+        {
+            let boxes = document.querySelectorAll('.boxall');
+            let check = false;
+
+            if (event.target.checked) {
+                check = true;          // if false then the don't select all box
+            }
+
+            for (checkbox of boxes) {
+                checkbox.checked = check;
+            }
+
+            showcheck_box();
+        }
+
+        // function 8
+        function showcheck_box() {
+            let boxes = document.querySelectorAll('.boxall'); // for select all and store that in one varriable
+            let E = 0;  // for count the  number 0 to _
+
+            for (checkbox of boxes) {
+                if (checkbox.checked) {
+                    E++;
+                }
+            }
+
+            let label = document.querySelector('.select_checkbox'); // for store in the selected box
+            label.innerHTML = 'Selected: ' + E; // display the number selected
+
+            if (E == 0) {
+                label.innerHTML = "";
+            } else if (E == boxes.length) {
+                document.getElementById("studentcheckbox").checked = true;
+            } else {
+                document.getElementById("studentcheckbox").checked = false;
+            }     
+        }
+
+        // function 9
+        function deletecheckbox() {
+            let boxes = document.querySelectorAll('.boxall');
+
+            for (let j = 0; j < boxes.length; j++) {
+                if (boxes[j].checked) {
+                    boxes[j].parentElement.parentElement.remove();
+                }
+            }
+
+        }
+    </script>
+</body>
+</html>

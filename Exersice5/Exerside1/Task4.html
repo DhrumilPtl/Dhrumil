@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 4</title>
+</head>
+<body>
+    <script>
+         let d = prompt("please enter the number");
+       for(i=1;i<=d;i++)
+{
+          for(spaces=1;spaces<=10-i;spaces ++)
+          {
+              document.write(" ");
+          }
+           for(j=1;j<=i;j++)
+           {
+            document.write("*");
+           }
+           document.write("<br>");
+}
+        for(i=1;i<=d;i++)
+{
+          for(spaces=1;spaces<=5+i;spaces++)
+          {
+              document.write(" ");
+          }
+           for(j=1;j<=d-i;j++)
+           {
+            document.write("*");
+           }
+           document.write("<br>");
+}
+        
+        
+    </script>
+</body>
+</html>

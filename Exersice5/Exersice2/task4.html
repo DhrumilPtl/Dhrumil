@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 4</title>
+</head>
+<body>
+    <!-- <button  onclick="new1()">array</button> -->
+    <script>
+         let A = [10,20,30,40,50,60,70,80,90]; 
+
+        function shufflearray(inputarr)
+        {
+           let Arr = inputarr;
+           for(let i=inputarr.length-1;i>=0;i--)
+           {
+               let randomIndex = Math.floor(Math.random()*(i+1));
+               let randomitem = Arr[randomIndex];
+               Arr[randomIndex] = Arr[i];
+               Arr[i] = randomitem;
+           }
+          console.log(Arr);
+        }
+        shufflearray(A);
+
+        let B = Math.floor(Math.random()*(A));
+        function new1()
+        {
+         let B = Math.floor(Math.sign());
+        }  
+        console.log(B);
+
+//         function getRandomArbitrary(min, max) {
+//     return Math.random() * (max - min) + min;
+// }
+
+// function getRandomInt(min, max) {
+//     min = Math.ceil(min);
+//     max = Math.floor(max);
+//     return Math.floor(Math.random() * (max - min + 1)) + min;
+// }    
+
+    </script>
+</body>
+</html>

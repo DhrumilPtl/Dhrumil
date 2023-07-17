@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="T4.css">
+    <title>E-4 Task4</title>
+</head>
+
+<body>
+    <div class="container">
+        <form name="js exercise" id="form">
+
+            firstname: <input type="text" name="fname" id="fname">
+            lastname : <input type="text" name="lname" id="lname">
+
+            <button id="add" onclick="onFormSubmit(event)">add</button>
+            <br>
+            <input type="checkbox" name="checkbox" id="studentcheckbox" onclick="selectAllCheckBox(event)">
+            <label for="studentcheckbox">Select all</label>
+            <label id="select_count"></label>
+            <button type="button" onclick="onDeleteSelected()">Delete</button>
+        </form>
+
+        <table id="tbl" class="table">
+            <thead>
+                <th>Select</th>
+                <th>Firstname</th>
+                <th>LastName</th>
+                <th>Edit/Delete</th>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+        </form>
+    </div>
+    <script>
+        let selectedRow = null
+        function onFormSubmit(event) {
+            event.preventDefault();
+            let formData = readFormData();
+            if (selectedRow == null) {
+                // console.log(formData);
+                insertNewRecord(formData);
+            }
+            else {
+                updateRecord(formData);
+            }
+        }
+
+
+        function readFormData()  // retrive the data
+        {
+            let formData = {};
+            formData["checkbox"] = document.getElementById("studentcheckbox").value;
+            formData["fname"] = document.getElementById("fname").value;
+            formData["lname"] = document.getElementById("lname").value;
+
+            return formData;
+        }
+
+
+        //Insert the data
+        function insertNewRecord(data) {
+            let table = document.getElementById("tbl").getElementsByTagName('tbody')[0];
+            let newRow = table.insertRow(table.length);
+            cell1 = newRow.insertCell(0);
+            cell1.innerHTML = `<input type="checkbox" class="checkBoxId" onClick="showSelectedLabel()" name="vehicle1">`;
+            cell2 = newRow.insertCell(1);
+            cell2.innerHTML = data.fname;
+            cell3 = newRow.insertCell(2);
+            cell3.innerHTML = data.lname;
+            cell4 = newRow.insertCell(3);
+            cell4.innerHTML = `<button onClick="onEdit(this)">Edit</button> <button onClick="onDelete(this)">Delete</button>`;
+        }
+
+        function onEdit(td)    // Edit the button
+        {
+            selectedRow = td.parentElement.parentElement;
+            // document.getElementById("checkbox") = selectedRow.cells[0].innerHTML;
+            document.getElementById("fname").value = selectedRow.cells[1].innerHTML;
+            document.getElementById("lname").value = selectedRow.cells[2].innerHTML;
+        }
+        function updateRecord(formData) {
+            selectedRow.cells[1].innerHTML = formData.fname;
+            selectedRow.cells[2].innerHTML = formData.lname;
+        }
+
+        function onDelete(td)   //Delete the data
+        {
+            if (confirm('Do you want to delete this record?')) {
+                row = td.parentElement.parentElement;
+                document.getElementById('tbl').deleteRow(row.rowIndex);
+            }
+        }
+
+        function selectAllCheckBox(e) // check-box 
+        {
+            let checkboxes = document.querySelectorAll('.checkBoxId')
+            let check = false
+
+            if (e.target.checked){
+                check = true
+            }
+            for (letcheckbox of checkboxes) {
+                letcheckbox.checked = check;
+            }
+            showSelectedLabel()
+        }
+        function showSelectedLabel(){
+            let checkboxes = document.querySelectorAll('.checkBoxId')
+            let n = 0
+            for (letcheckbox of checkboxes) {
+                if(letcheckbox.checked)
+                    n++;
+            }
+            let label = document.getElementById("select_count")
+            label.innerHTML = "Selected "+n
+            if(n == 0)
+            label.innerHTML = ""
+            else if(n == checkboxes.length)
+                studentcheckbox.checked = true
+            else
+                studentcheckbox.checked = false
+        }
+        function onDeleteSelected(){ // select data
+            let checkboxes = document.querySelectorAll('.checkBoxId')
+            for (let i=0; i<checkboxes.length; i++) {
+                if(checkboxes[i].checked)
+                    checkboxes[i].parentElement.parentElement.remove()
+            }
+            showSelectedLabel()
+        }
+
+    </script>
+</body>
+
+</html>
