@@ -33,7 +33,12 @@ const App = () => {
   }, []);
 
   // Get the current date with desired formatting
-  const options = { weekday: "long", month: "long", day: "numeric", year: "numeric" };
+  const options = {
+    weekday: "long",
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  };
   const currentDate = new Date().toLocaleDateString("en-US", options);
 
   return (

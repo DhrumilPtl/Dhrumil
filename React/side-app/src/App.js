@@ -1,21 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
-// import React from 'react'
-// import ReactDOM  from 'react-dom';  
-import Hydration from './Hydration';
-import Serverside from './Serverside';
-import Usestate from './Usestate';
-import Useeffect from './Useeffect';
-import Hooks from './Hooks';
+import React from "react"; // Add this line to import React
+
+import "./App.css";
+//import Routing from "./Routing";
+//import Usememo from "./Usememo";
+//import Usecallback from "./Usecallback";
+//import Usereduce from "./Usereduce";
+//import UseApi from "./UseApi";
+// import Routing from "./Pages/Routing";
+import Crude from "./Crude"
 
 function App() {
   return (
     <div className="App">
-    {/* <Serverside/>
-    <Hydration/> */}
-    {/* <Usestate/> */}
-    {/* <Useeffect/> */}
-    <Hooks/>
+      <Crude />
     </div>
   );
 }

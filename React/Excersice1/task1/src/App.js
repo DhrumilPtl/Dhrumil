@@ -1,18 +1,14 @@
-import logo from './logo.svg';
-import './App.css';
-import T1f from './T1f';
-import T1c from './T1c';
+import logo from "./logo.svg";
+import "./App.css";
+import T1f from "./T1f";
+import T1c from "./T1c";
 
 function App() {
   return (
     <div className="App">
-
-    
-    <T1f/>
-___________________________________
-   
-     
-    <T1c/>
+      <T1f />
+      ___________________________________
+      <T1c />
     </div>
   );
 }
